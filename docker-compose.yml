@@ -1,0 +1,57 @@
+version: '2'
+
+services:
+  web:
+    container_name: nginx
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "81:81"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d/
+      - ./src:/www
+    links:
+      - php
+      - mariadb
+    restart: always
+  php:
+    container_name: php
+    image: sadykh/php:latest
+    volumes:
+      - ./src:/www
+      - ./mysqldata:/var/lib/mysql
+      - ./src/quiz/php/php.ini:/usr/local/etc/php/php.ini
+    links:
+      - mariadb
+    restart: always
+  mariadb:
+      container_name: db
+      image: mysql:5.6
+      ports:
+        - "3306:3306"
+        - "3307:3307"
+      expose:
+        - "3306"
+        - "3307"
+      environment:
+       - MYSQL_ROOT_PASSWORD=veryhardrootpassword
+       - MYSQL_USER=aritomo
+       - MYSQL_DATABASE=trackerDB
+       - MYSQL_PASSWORD=veryhardmysqlpassword
+      volumes:
+       - ./mysqldata:/var/lib/mysql
+      restart: always
+  centrifugo:
+        container_name: centrifugo
+        image: fzambia/centrifugo:latest
+        environment:
+          - CENTRIFUGO_SECRET=potato
+          - CENTRIFUGO_ADMIN_PASSWORD=potato
+          - CENTRIFUGO_ADMIN_SECRET=potato
+        command: centrifugo --web
+        ports:
+          - "8000:8000"
+        volumes:
+            - ./src/quiz/centrifugo/config.json:/centrifugo/config.json
+        restart: always

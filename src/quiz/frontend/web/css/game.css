@@ -1,0 +1,40 @@
+@font-face {
+    font-family: Rostelecom Basis;
+    src: url("/files/fonts/RostelecomBasis-Bold.otf") format("opentype");
+}
+
+.game-questions{
+    height: 700px;
+    font-family: Rostelecom Basis;
+    font-size: x-large;
+    color: #0d3349;
+    text-align: center;
+}
+
+#results-modal{
+}
+.quiz-section-name{
+    font-family: Rostelecom Basis;
+}
+.question-box{
+    text-align: center;
+    width: 60%;
+    height: 150px;
+    margin-top: 18%;
+    margin-left: 20%;
+    white-space: normal;
+    font-size: small;
+}
+.modal-text{
+    margin-top: 25%;
+    margin-left: 20%;
+    width: 65%;
+    font-size: large;
+    font-family: Rostelecom Basis;
+    color: #0d3349;
+    font-size: small;
+}
+
+.question-audio{
+    margin-top: 20%;
+}

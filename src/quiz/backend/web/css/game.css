@@ -1,0 +1,27 @@
+@font-face {
+    font-family: Rostelecom Basis;
+    src: url("/files/fonts/RostelecomBasis-Bold.otf") format("opentype");
+}
+
+#game-questions{
+    height: 700px;
+    font-family: Rostelecom Basis;
+    font-size: large;
+    color: #0d3349;
+}
+.question-box{
+    text-align: center;
+    width: 60%;
+    height: 150px;
+    margin-top: 120px;
+    margin-left: 20%;
+    white-space: normal;
+}
+.modal-text{
+    margin-top: 15%;
+    margin-left: 20%;
+    width: 65%;
+    font-size: large;
+    font-family: Rostelecom Basis;
+    color: #0d3349;
+}
