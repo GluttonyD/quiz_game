@@ -1,4 +1,4 @@
-<aside class="main-sidebar" style="background-color: #0b3e6f">
+<aside class="main-sidebar" style="background-color: #0b3e6f;width: 0px !important;">
 
     <section class="sidebar">
 

@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $content string */
 ?>
 
-<header class="main-header">
+<header class="main-header" style="background-color: #0b3e6f" >
 
 
     <nav class="navbar navbar-static-top" role="navigation" style="background-color: #0b3e6f">
