@@ -9,6 +9,7 @@
 namespace frontend\controllers;
 
 
+use common\models\Question;
 use common\models\Quiz;
 use common\models\QuizSection;
 use frontend\models\QuizForm;
@@ -38,5 +39,15 @@ class GameController extends Controller
             $model->result();
         }
         return true;
+    }
+
+    public function actionGetFile($question_id){
+        /**
+         * @var Question $question
+         */
+        $question=Question::find()->where(['id'=>$question_id])->one();
+        if($question->addition_file){
+            return json_encode(['file'=>$question->addition_file]);
+        }
     }
 }

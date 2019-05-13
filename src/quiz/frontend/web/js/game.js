@@ -8,9 +8,15 @@ var remote_signal=0;
 
 $(document).ready(function () {
     $('#results-modal').modal('show');
+    $('#start-modal').modal('show');
     $('#final-modal').modal('hide');
     $('#rules-modal').modal('show');
     $('#rules-modal').on('hide.bs.modal',function (e) {
+        if(!remote_signal){
+            e.preventDefault();
+        }
+    });
+    $('#start-modal').on('show.bs.modal',function (e) {
         if(!remote_signal){
             e.preventDefault();
         }
@@ -41,6 +47,27 @@ $(document).ready(function () {
             success: function (data)   // A function to be called if request succeeds
             {
                 console.log(data);
+            }
+        });
+    });
+
+
+    $(document).on('click','.btn-add-files',function (e) {
+       e.preventDefault();
+       $('#files-modal').modal('show');
+        $.ajax({
+            url: '/game/get-file', // Url to which the request is send
+            type: "GET",             // Type of request to be send, called as method
+            data:{question_id:e.target.id}, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+            contentType: false,       // The content type used when sending data to the server.
+            cache: false,             // To unable request pages to be cached
+            processData: true,
+            dataType: 'json',// To send DOMDocument or non processed data file it is set to false
+            success: function (data)   // A function to be called if request succeeds
+            {
+                console.log(data);
+                var tmp='url(/'+data['file']+')';
+                $('.modal-question-file').css('background-image',tmp)
             }
         });
     });
@@ -114,7 +141,14 @@ function setConnect() {
         $('#rules-modal').modal('hide');
         remote_signal=0;
     });
-
+    centrifuge.subscribe("game-results", function (message) {
+        console.log(message);
+        var res='';
+        for(var i=1;i<message['data'].length;i++){
+            res+='<p>Команда '+(Number(message['data'][i]['user_id'])-1)+':'+message['data'][i]['result']+'</p>';
+        }
+        $('.team-results').html(res);
+    });
     centrifuge.connect();
 }
 

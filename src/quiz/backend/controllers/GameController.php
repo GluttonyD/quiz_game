@@ -54,6 +54,8 @@ class GameController extends Controller
         $model=new ResultsForm();
         if($model->load(Yii::$app->request->post()) && $model->results()){
             $results=QuizResult::find()->orderBy('result',SORT_DESC)->all();
+            $results_arr=QuizResult::find()->orderBy('result',SORT_DESC)->asArray()->all();
+            CentrifugeModel::send('game-results',$results_arr);
             return $this->render('show-results',[
                 'results'=>$results
             ]);

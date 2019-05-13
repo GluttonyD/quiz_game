@@ -22,7 +22,7 @@ $i = 0;
                              style="background-image: url(/<?= $section->background ?>); background-repeat: round">
                             <div class="question-box">
                                 <?= $question->text ?>
-                                <?php if ($question->addition_file) { ?>
+                                <?php if ($question->addition_file && $question->file_ext=='mp3') { ?>
                                     <audio class="question-audio" controls>
                                         <source src="/<?= $question->addition_file ?>">
                                     </audio>
@@ -32,6 +32,7 @@ $i = 0;
                         <input type="hidden" name="QuizForm[answers][<?= $i ?>][question_id]"
                                value="<?= $question->id ?>">
                         <div class="box-footer" style="background-color: #0b3e6f; border-top-color: #0b3e6f">
+                            <button id="<?= $question->id ?>" class="btn btn-primary btn-flat btn-add-files" style="display: block">Показать картинку</button>
                             <?php if ($question->type == 1) { ?>
                                 <?php foreach ($question->answers as $answer) { ?>
                                     <p>
@@ -83,10 +84,11 @@ $i = 0;
 <div class="modal modal-warning fade" id="final-modal" style="display: none; background: rgb(0, 0, 0);">
     <div class="modal-dialog" style="width: 90%;">
         <div class="modal-content" style="">
-            <div class="modal-body modal-picture"
-                 style="height: 750px; background-image: url(/files/backgrounds/6.jpg); background-repeat: round">
-                <div class="modal-text" >
-                    Результаты
+            <div class="modal-body game-results"
+                 style="height: 750px; background-color: #0b3e6f !important; color: #ffffff;">
+                <div class="modal-text result-text" >
+                    <h3>Результаты</h3>
+                    <div class="team-results"></div>
                 </div>
             </div>
         </div>
@@ -102,6 +104,34 @@ $i = 0;
                 <div  class="modal-text section-rules" style="margin-top: 15% !important;">
                     <p>Правила тура "<?= $quiz->sections[0]->name ?>"</p>
                     <p><?= $quiz->sections[0]->rules ?></p>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal modal-warning fade" id="files-modal" style="display: none; background: rgb(0, 0, 0);">
+    <div class="modal-dialog" style="width: 90%;">
+        <div class="modal-content" style="">
+            <div class="modal-body modal-picture modal-question-file"
+                 style="height: 750px; background-image: url(/files/backgrounds/1.png); background-repeat: round">
+                <div  class="modal-text section-rules" style="margin-top: 15% !important;">
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal modal-warning fade" id="start-modal" style="display: none; background: rgb(0, 0, 0);">
+    <div class="modal-dialog" style="width: 90%;">
+        <div class="modal-content" style="">
+            <div class="modal-body modal-picture modal-question-file"
+                 style="height: 750px; background-image: url(/files/start.jpg); background-repeat: round">
+                <div  class="modal-text section-rules" style="margin-top: 15% !important;">
                 </div>
             </div>
         </div>
