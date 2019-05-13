@@ -56,19 +56,17 @@ $j = 0;
 </div>
 <div class="modal modal-warning fade" id="results-modal" style="display: none; background: rgb(0, 0, 0);">
     <div class="modal-dialog" style="width: 55%;">
-        <div class="modal-content" style="">
-            <div class="modal-header" id="section-name">
+        <div class="modal-content" style="background-color: #0b3e6f">
+            <div class="modal-header" id="section-name" style="background-color: #0b3e6f !important;">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span></button>
-                <h3 class="modal-title"><?= $quiz->sections[0]->name ?></h3>
+                <h3 class="modal-title" style="background-color: #0b3e6f; font-family: Rostelecom Basis; border-top-color: #0b3e6f" ><?= $quiz->sections[0]->name ?></h3>
             </div>
             <div class="modal-body modal-picture"
                  style="height: 750px; background-image: url(/files/backgrounds/1.png); background-repeat: round">
                 <div class="modal-text">
                     <p class="question-number">Вопрос №1</p>
                 </div>
-            </div>
-            <div class="modal-footer">
             </div>
         </div>
         <!-- /.modal-content -->
