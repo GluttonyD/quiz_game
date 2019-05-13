@@ -159,7 +159,6 @@ function setConnect() {
         $('.team-results').html(res);
     });
     centrifuge.subscribe("show-start", function (message) {
-        alert('show');
         remote_signal=1;
         $('#start-modal').modal('show');
         remote_signal=0;
