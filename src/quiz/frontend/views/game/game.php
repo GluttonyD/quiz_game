@@ -67,7 +67,7 @@ $i = 0;
 </form>
 
 <div class="modal modal-warning fade" id="results-modal" style="display: none; background: rgb(0, 0, 0);">
-    <div class="modal-dialog" style="width: 90%;">
+    <div class="modal-dialog" style="width: 90%;margin-top: 10%">
         <div class="modal-content" style="">
             <div class="modal-body modal-picture"
                  style="height: 750px; background-image: url(/files/backgrounds/1.png); background-repeat: round">
@@ -84,7 +84,7 @@ $i = 0;
 
 
 <div class="modal modal-warning fade" id="final-modal" style="display: none; background: rgb(0, 0, 0);">
-    <div class="modal-dialog" style="width: 90%;">
+    <div class="modal-dialog" style="width: 90%;margin-top: 10%">
         <div class="modal-content" style="">
             <div class="modal-body game-results"
                  style="height: 750px; background-color: #0b3e6f !important; color: #ffffff; !important;">
@@ -99,7 +99,7 @@ $i = 0;
     <!-- /.modal-dialog -->
 </div>
 <div class="modal modal-warning fade" id="rules-modal" style="display: none; background: rgb(0, 0, 0);">
-    <div class="modal-dialog" style="width: 90%;">
+    <div class="modal-dialog" style="width: 90%; margin-top: 10%">
         <div class="modal-content" style="">
             <div class="modal-body modal-picture"
                  style="height: 750px; background-image: url(/files/backgrounds/1.png); background-repeat: round">
@@ -115,7 +115,7 @@ $i = 0;
 </div>
 
 <div class="modal modal-warning fade" id="files-modal" style="display: none; background: rgb(0, 0, 0);">
-    <div class="modal-dialog" style="width: 90%;">
+    <div class="modal-dialog" style="width: 90%;margin-top: 10%">
         <div class="modal-content" style="">
             <div class="modal-body modal-picture modal-question-file"
                  style="height: 750px; background-image: url(/files/backgrounds/1.png); background-repeat: round; background-size: 100%">
@@ -128,7 +128,7 @@ $i = 0;
 
 
 <div class="modal modal-warning fade" id="start-modal" style="display: none; background: rgb(0, 0, 0);">
-    <div class="modal-dialog" style="width: 90%;">
+    <div class="modal-dialog" style="width: 90%;margin-top: 10%">
         <div class="modal-content" style="">
             <div class="modal-body modal-picture modal-question-file"
                  style="height: 750px; background-image: url(/files/start.jpg); background-repeat: round">
