@@ -39,6 +39,7 @@ $(document).ready(function () {
        var next_section='.game-section#'+current_section_id;
        var id=$(next_section).data('next_section');
        if(id) {
+           showStart();
            offset += current_section_count;
            getSectionCount(id);
            current_section_id=id;
@@ -51,7 +52,7 @@ $(document).ready(function () {
            sendNextQuestion();
            $('#rules-modal').modal('show');
            showRules(id);
-           showStart();
+
 
        }
        else{
