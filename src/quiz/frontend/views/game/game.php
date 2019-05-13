@@ -103,7 +103,7 @@ $i = 0;
         <div class="modal-content" style="">
             <div class="modal-body modal-picture"
                  style="height: 750px; background-image: url(/files/backgrounds/1.png); background-repeat: round">
-                <div class="modal-text-rules section-rules" style="margin-top: 18% !important;">
+                <div class="modal-text-rules section-rules" style="margin-top: 20% !important;">
                     <p>Правила тура "<?= $quiz->sections[0]->name ?>"</p>
                     <p><?= $quiz->sections[0]->rules ?></p>
                 </div>
@@ -130,7 +130,7 @@ $i = 0;
 <div class="modal modal-warning fade" id="start-modal" style="display: none; background: rgb(0, 0, 0);">
     <div class="modal-dialog" style="width: 90%;margin-top: 10%">
         <div class="modal-content" style="">
-            <div class="modal-body modal-question-file"
+            <div class="modal-body"
                  style="height: 750px; background-image: url(/files/start.jpg); background-repeat: round">
             </div>
         </div>

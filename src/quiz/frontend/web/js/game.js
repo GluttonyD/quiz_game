@@ -5,8 +5,15 @@ var centrifuge;
 var current_question = 0;
 var remote_signal = 0;
 
-$(window).bind('beforeunload', function (e) {
-    return false;
+$(window).bind('beforeunload', function (event) {
+    event.preventDefault();
+    event.returnValue='';
+    return '';
+});
+$(window).bind('unload', function (event) {
+    event.preventDefault();
+    event.returnValue='';
+    return '';
 });
 
 $(document).ready(function () {
