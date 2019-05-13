@@ -42,6 +42,16 @@
     font-size: small;
 }
 
+.modal-text-rules{
+    margin-top: 30%;
+    margin-left: 20%;
+    width: 65%;
+    font-size: large;
+    font-family: Rostelecom Basis;
+    color: #0d3349;
+    font-size: small;
+}
+
 .question-audio{
     margin-top: 20%;
 }
