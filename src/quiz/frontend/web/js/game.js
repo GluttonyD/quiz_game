@@ -5,8 +5,8 @@ var centrifuge;
 var current_question = 0;
 var remote_signal = 0;
 
-$(window).bind('beforeunload',function (e) {
-   return false;
+$(window).bind('beforeunload', function (e) {
+    return false;
 });
 
 $(document).ready(function () {
@@ -56,7 +56,6 @@ $(document).ready(function () {
 
     $(document).on('click', '.btn-add-files', function (e) {
         e.preventDefault();
-
         var tmp = '#question-' + current_question;
         var file = Number($(tmp).data('images'));
         if (file) {
@@ -71,13 +70,33 @@ $(document).ready(function () {
                 dataType: 'json',// To send DOMDocument or non processed data file it is set to false
                 success: function (data)   // A function to be called if request succeeds
                 {
-                    console.log('sosi');
                     console.log(data);
                     var tmp = 'url(/' + data['file'] + ')';
                     $('.modal-question-file').css('background-image', tmp)
                 }
             });
         }
+    });
+
+    $(document).on('click', '.music-btn', function (e) {
+        e.preventDefault();
+        $('#music-modal').modal('show');
+        // $.ajax({
+        //     url: '/game/get-file', // Url to which the request is send
+        //     type: "GET",             // Type of request to be send, called as method
+        //     data: {question_id: e.target.id}, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+        //     contentType: false,       // The content type used when sending data to the server.
+        //     cache: false,             // To unable request pages to be cached
+        //     processData: true,
+        //     dataType: 'json',// To send DOMDocument or non processed data file it is set to false
+        //     success: function (data)   // A function to be called if request succeeds
+        //     {
+        //         console.log('sosi');
+        //         console.log(data);
+        //         var tmp = 'url(/' + data['file'] + ')';
+        //         $('.modal-question-file').css('background-image', tmp)
+        //     }
+        // });
     });
 });
 
@@ -136,7 +155,6 @@ function setConnect() {
         $('#final-modal').modal('show');
     });
     centrifuge.subscribe("show-rules", function (message) {
-        $('#rules-modal').modal('show');
         console.log(message);
         var rules = '';
         rules += '<p>Правила тура"' + message['data']['section_name'] + '"';
@@ -144,6 +162,8 @@ function setConnect() {
         var tmp = 'url(/' + message['data']['section_background'] + ')';
         $('.modal-picture').css('background-image', tmp);
         $('.section-rules').html(rules);
+        $('#rules-modal').modal('show');
+
     });
     centrifuge.subscribe("close-rules", function (message) {
         remote_signal = 1;

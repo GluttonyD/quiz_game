@@ -17,6 +17,7 @@ use Yii;
  *
  * @property Answer[] $answers
  * @property QuizQuestion[] $quizQuestions
+ * @property ExtraFiles[] $extraFiles
  */
 class Question extends \yii\db\ActiveRecord
 {
@@ -68,5 +69,9 @@ class Question extends \yii\db\ActiveRecord
     public function getQuizQuestions()
     {
         return $this->hasMany(QuizQuestion::className(), ['question_id' => 'id']);
+    }
+
+    public function getExtraFiles(){
+        return $this->hasMany(ExtraFiles::className(),['question_id'=>'id']);
     }
 }

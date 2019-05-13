@@ -41,9 +41,18 @@
     color: #0d3349;
     font-size: small;
 }
+.modal-text-result{
+    margin-top: 15%;
+    margin-left: 20%;
+    width: 65%;
+    font-size: large;
+    font-family: Rostelecom Basis;
+    color: #ffffff;
+    font-size: small;
+}
 
 .modal-text-rules{
-    margin-top: 30%;
+    margin-top: 25%;
     margin-left: 20%;
     width: 65%;
     font-size: large;
