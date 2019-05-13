@@ -130,10 +130,8 @@ $i = 0;
 <div class="modal modal-warning fade" id="start-modal" style="display: none; background: rgb(0, 0, 0);">
     <div class="modal-dialog" style="width: 90%;margin-top: 10%">
         <div class="modal-content" style="">
-            <div class="modal-body modal-picture modal-question-file"
+            <div class="modal-body modal-question-file"
                  style="height: 750px; background-image: url(/files/start.jpg); background-repeat: round">
-                <div class="modal-text section-rules" style="margin-top: 15% !important;">
-                </div>
             </div>
         </div>
         <!-- /.modal-content -->

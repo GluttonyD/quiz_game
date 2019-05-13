@@ -78,26 +78,6 @@ $(document).ready(function () {
         }
     });
 
-    $(document).on('click', '.music-btn', function (e) {
-        e.preventDefault();
-        $('#music-modal').modal('show');
-        // $.ajax({
-        //     url: '/game/get-file', // Url to which the request is send
-        //     type: "GET",             // Type of request to be send, called as method
-        //     data: {question_id: e.target.id}, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
-        //     contentType: false,       // The content type used when sending data to the server.
-        //     cache: false,             // To unable request pages to be cached
-        //     processData: true,
-        //     dataType: 'json',// To send DOMDocument or non processed data file it is set to false
-        //     success: function (data)   // A function to be called if request succeeds
-        //     {
-        //         console.log('sosi');
-        //         console.log(data);
-        //         var tmp = 'url(/' + data['file'] + ')';
-        //         $('.modal-question-file').css('background-image', tmp)
-        //     }
-        // });
-    });
 });
 
 function getParams() {
@@ -178,6 +158,13 @@ function setConnect() {
         }
         $('.team-results').html(res);
     });
+    centrifuge.subscribe("show-start", function (message) {
+        alert('show');
+        remote_signal=1;
+        $('#start-modal').modal('show');
+        remote_signal=0;
+    });
+
     centrifuge.connect();
 }
 

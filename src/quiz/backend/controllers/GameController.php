@@ -83,6 +83,11 @@ class GameController extends Controller
         CentrifugeModel::send('close-modal',['data'=>'lalala']);
         return true;
     }
+
+    public function actionShowStart(){
+        CentrifugeModel::send('show-start',['data'=>'lalala']);
+        return true;
+    }
     public function actionShowRules($section_id=null){
         /**
          * @var Section $section

@@ -51,6 +51,8 @@ $(document).ready(function () {
            sendNextQuestion();
            $('#rules-modal').modal('show');
            showRules(id);
+           showStart();
+
        }
        else{
            alert('Результаты последнего блока');
@@ -178,6 +180,22 @@ function closeRules(section_id=null) {
         url: '/game/close-rules', // Url to which the request is send
         type: "GET",             // Type of request to be send, called as method
         data:{section_id:section_id}, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+        contentType: false,       // The content type used when sending data to the server.
+        cache: false,             // To unable request pages to be cached
+        processData: true,
+        dataType: 'json',// To send DOMDocument or non processed data file it is set to false
+        success: function (data)   // A function to be called if request succeeds
+        {
+            console.log(data);
+        }
+    });
+}
+
+function showStart() {
+    $.ajax({
+        url: '/game/show-start', // Url to which the request is send
+        type: "GET",             // Type of request to be send, called as method
+        data: {}, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
         contentType: false,       // The content type used when sending data to the server.
         cache: false,             // To unable request pages to be cached
         processData: true,
