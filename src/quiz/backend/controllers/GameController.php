@@ -92,6 +92,14 @@ class GameController extends Controller
         return true;
     }
 
+    public function actionSetQuestion($number=0){
+        $quiz=Quiz::find()->one();
+        $quiz->current_question=$number;
+        $quiz->save();
+        return true;
+
+    }
+
     public function actionNextQuestion($current_question=null){
         /**
          * @var Quiz $quiz

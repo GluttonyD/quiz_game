@@ -22,7 +22,7 @@ $j = 0;
                          class="game-section">
                         <?php foreach ($section->questions as $question) { ?>
                             <div id="question-<?= $i ?>" class="question-box"
-                                 style="display: <?= ($i == 0) ? 'block' : 'none' ?>;">
+                                 style="display: <?= ($i == $quiz->current_question) ? 'block' : 'none' ?>;">
                                 <?= $question->text ?>
                             </div>
                             <?php $i++;

@@ -9,7 +9,7 @@ $i = 0;
 ?>
 <form id="game-form" method="post">
     <?= yii\helpers\Html:: hiddenInput(\Yii:: $app->getRequest()->csrfParam, \Yii:: $app->getRequest()->getCsrfToken(), []) ?>
-    <div class="row">
+    <div id="game" class="row" data-current_question="<?= $quiz->current_question ?>">
         <?php foreach ($quiz->sections as $section) { ?>
             <?php foreach ($section->questions as $question) { ?>
                 <div id="question-<?= $i ?>" class="col-md-offset-2 col-md-8 game-question"

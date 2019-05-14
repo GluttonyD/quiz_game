@@ -2,7 +2,7 @@ var user;
 var token;
 var timestamp;
 var centrifuge;
-var current_question = 0;
+var current_question =Number($('#game').data('current_question'));
 var remote_signal = 0;
 var dump=0;
 
@@ -125,6 +125,7 @@ function setConnect() {
         token: token,
     });
     centrifuge.subscribe("next-question", function (message) {
+        // alert(current_question);
         $('#results-modal').modal('show');
         console.log(message);
         var question = '#question-' + current_question;
