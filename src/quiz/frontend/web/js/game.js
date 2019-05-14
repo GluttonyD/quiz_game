@@ -190,7 +190,6 @@ function setConnect() {
 
     centrifuge.subscribe("save-dump", function (message) {
         dump=1;
-        alert('dump');
         $('#send-answers').click();
         dump=0;
     });
