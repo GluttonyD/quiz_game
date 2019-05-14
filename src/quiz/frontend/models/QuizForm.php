@@ -83,7 +83,7 @@ class QuizForm extends Model
                     if($question->type==2){
                         $answer_result->text=$item['answer'];
                     }
-                    $answer_result->question_id=$element['question_id'];
+                    $answer_result->question_id=$userQuestion->id;
                     $answer_result->answer_id=$id;
                     $answer_result->save();
                 }

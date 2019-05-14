@@ -50,6 +50,6 @@ class TmpUserQuestion extends \yii\db\ActiveRecord
     }
 
     public function getAnswers(){
-        return $this->hasMany(TmpUserAnswer::className(),['question_id'=>'question_id']);
+        return $this->hasMany(TmpUserAnswer::className(),['question_id'=>'id']);
     }
 }
