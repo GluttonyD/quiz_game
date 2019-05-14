@@ -22,6 +22,7 @@ use yii\web\IdentityInterface;
  * @property integer $updated_at
  * @property string $password write-only password
  * @property UserQuestion[] $questions
+ * @property TmpUserQuestion[] $dump
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -210,5 +211,8 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function getQuestions(){
         return $this->hasMany(UserQuestion::className(),['user_id'=>'id']);
+    }
+    public function getDump(){
+        return $this->hasMany(TmpUserQuestion::className(),['user_id'=>'id']);
     }
 }

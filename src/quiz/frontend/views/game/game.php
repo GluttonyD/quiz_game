@@ -13,7 +13,7 @@ $i = 0;
         <?php foreach ($quiz->sections as $section) { ?>
             <?php foreach ($section->questions as $question) { ?>
                 <div id="question-<?= $i ?>" class="col-md-offset-2 col-md-8 game-question"
-                     style="display:<?= ($i == 0) ? 'block' : 'none' ?>"
+                     style="display:<?= ($i == $quiz->current_question) ? 'block' : 'none' ?>"
                      data-section="<?= $section->name ?>" <?= ($question->addition_file) ? 'data-images="1"' : 'data-images="0"' ?>
                      data-background="/<?= $section->background ?>">
                     <div class="box box-warning" style="border-top-color: #0b3e6f">
@@ -64,6 +64,7 @@ $i = 0;
         <?php } ?>
     </div>
     <button type="submit" id="send-answers" style="display: none"></button>
+    <button type="submit" id="send-answers-dump" style="display: none"></button>
 </form>
 
 <div class="modal modal-warning fade" id="results-modal" style="display: none; background: rgb(0, 0, 0);">

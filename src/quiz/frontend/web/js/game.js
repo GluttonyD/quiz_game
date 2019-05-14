@@ -4,6 +4,7 @@ var timestamp;
 var centrifuge;
 var current_question = 0;
 var remote_signal = 0;
+var dump=0;
 
 $(window).bind('beforeunload', function (event) {
     event.preventDefault();
@@ -44,10 +45,17 @@ $(document).ready(function () {
     getParams();
     $(document).on('submit', 'form#game-form', function (e) {
         e.preventDefault();
+        var url;
+        if(dump){
+            url='/game/get-dump';
+        }
+        else{
+            url='/game/results';
+        }
         var form = $('form#game-form');
         var data = new FormData(this);
         $.ajax({
-            url: '/game/results', // Url to which the request is send
+            url: url, // Url to which the request is send
             type: "POST",             // Type of request to be send, called as method
             data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
             contentType: false,       // The content type used when sending data to the server.
@@ -59,6 +67,7 @@ $(document).ready(function () {
             }
         });
     });
+
 
 
     $(document).on('click', '.btn-add-files', function (e) {
@@ -170,7 +179,21 @@ function setConnect() {
         $('#start-modal').modal('show');
         remote_signal=0;
     });
+    centrifuge.subscribe("close-windows", function (message) {
+        remote_signal=1;
+        $('#start-modal').modal('hide');
+        $('#rules-modal').modal('hide');
+        $('#results-modal').modal('hide');
+        $('#final-modal').modal('hide');
+        remote_signal=0;
+    });
 
+    centrifuge.subscribe("save-dump", function (message) {
+        dump=1;
+        alert('dump');
+        $('#send-answers').click();
+        dump=0;
+    });
     centrifuge.connect();
 }
 

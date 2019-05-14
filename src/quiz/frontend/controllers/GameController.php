@@ -41,6 +41,14 @@ class GameController extends Controller
         return true;
     }
 
+    public function actionGetDump(){
+        $model=new QuizForm();
+        if($model->load(\Yii::$app->request->post())){
+            $model->getDump();
+        }
+        return true;
+    }
+
     public function actionGetFile($question_id){
         /**
          * @var Question $question

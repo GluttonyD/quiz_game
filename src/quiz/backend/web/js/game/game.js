@@ -4,6 +4,7 @@ var current_section_count;
 var current_section_id=$('#game-questions').data('first_section');
 var offset=0;
 var background;
+var dump;
 
 $(document).ready(function () {
     $('#results-modal').modal('hide');
@@ -26,7 +27,7 @@ $(document).ready(function () {
           $('#question-' + current_question + '').css('display', 'block');
           $('.question-number').text('Вопрос №'+(current_question+1));
           // $('.modal-question-text').text(  $('#question-' + current_question + '').text());
-          sendNextQuestion();
+          sendNextQuestion(current_question);
       }
       if(current_question==(current_section_count-1)+offset){
           $('#next-question').css('display','none');
@@ -84,11 +85,11 @@ function getSectionCount(section_id) {
     });
 }
 
-function sendNextQuestion() {
+function sendNextQuestion(current_question) {
     $.ajax({
         url: '/game/next-question', // Url to which the request is send
         type: "GET",             // Type of request to be send, called as method
-        data:{}, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+        data:{current_question:current_question}, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
         contentType: false,       // The content type used when sending data to the server.
         cache: false,             // To unable request pages to be cached
         processData: true,

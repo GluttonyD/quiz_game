@@ -13,8 +13,11 @@ use common\models\Question;
 use common\models\QuizQuestion;
 use common\models\QuizResult;
 use common\models\Section;
+use common\models\TmpUserAnswer;
+use common\models\TmpUserQuestion;
 use Yii;
 use common\models\Quiz;
+use yii\helpers\VarDumper;
 use yii\web\Controller;
 use common\models\User;
 
@@ -53,8 +56,9 @@ class GameController extends Controller
     public function actionGetResults(){
         $model=new ResultsForm();
         if($model->load(Yii::$app->request->post()) && $model->results()){
-            $results=QuizResult::find()->orderBy('result',SORT_DESC)->all();
-            $results_arr=QuizResult::find()->orderBy('result',SORT_DESC)->asArray()->all();
+            $results=QuizResult::find()->orderBy(['result'=>SORT_DESC])->all();
+            $results_arr=QuizResult::find()->orderBy(['result'=>SORT_DESC])->asArray()->all();
+            VarDumper::dump($results_arr);
             CentrifugeModel::send('game-results',$results_arr);
             return $this->render('show-results',[
                 'results'=>$results
@@ -69,7 +73,32 @@ class GameController extends Controller
         ]);
     }
 
-    public function actionNextQuestion(){
+    public function actionShowDump(){
+        $dump=User::find()->with('dump')->all();
+        return $this->render('dump',[
+            'dump'=>$dump
+        ]);
+    }
+
+    public function actionCleanDump(){
+        $question_dump=TmpUserQuestion::find()->all();
+        $answer_dump=TmpUserAnswer::find()->all();
+        foreach ($question_dump as $item){
+            $item->delete();
+        }
+        foreach ($answer_dump as $item){
+            $item->delete();
+        }
+        return true;
+    }
+
+    public function actionNextQuestion($current_question=null){
+        /**
+         * @var Quiz $quiz
+         */
+        $quiz=Quiz::find()->one();
+        $quiz->current_question=$current_question;
+        $quiz->save();
         CentrifugeModel::send("next-question",['data'=>'lalala']);
         return true;
     }
@@ -88,6 +117,17 @@ class GameController extends Controller
         CentrifugeModel::send('show-start',['data'=>'lalala']);
         return true;
     }
+
+    public function actionCloseAllWindows(){
+        CentrifugeModel::send('close-windows',['data'=>'lslslsls']);
+        return true;
+    }
+
+    public function actionSaveDump(){
+        CentrifugeModel::send('save-dump',['data'=>'lslslsls']);
+        return true;
+    }
+
     public function actionShowRules($section_id=null){
         /**
          * @var Section $section
