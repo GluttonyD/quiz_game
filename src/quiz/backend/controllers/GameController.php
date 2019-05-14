@@ -15,6 +15,8 @@ use common\models\QuizResult;
 use common\models\Section;
 use common\models\TmpUserAnswer;
 use common\models\TmpUserQuestion;
+use common\models\UserAnswer;
+use common\models\UserQuestion;
 use Yii;
 use common\models\Quiz;
 use yii\helpers\VarDumper;
@@ -83,6 +85,18 @@ class GameController extends Controller
     public function actionCleanDump(){
         $question_dump=TmpUserQuestion::find()->all();
         $answer_dump=TmpUserAnswer::find()->all();
+        foreach ($question_dump as $item){
+            $item->delete();
+        }
+        foreach ($answer_dump as $item){
+            $item->delete();
+        }
+        return true;
+    }
+
+    public function actionCleanResult(){
+        $question_dump=UserQuestion::find()->all();
+        $answer_dump=UserAnswer::find()->all();
         foreach ($question_dump as $item){
             $item->delete();
         }
