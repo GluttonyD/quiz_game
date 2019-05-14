@@ -8,15 +8,15 @@ $this->title = 'Игра';
 $i = 0;
 $j = 0;
 ?>
-<div class="row">
+<div id="game" class="row" data-current_question="<?= $quiz->current_question ?>" data-current_section="<?= $quiz->current_section ?>" data-offset="<?= $quiz->offset ?>">
     <div class="col-md-8 col-md-offset-2">
         <div class="box box-warning" style=" border-top-color:#0b3e6f">
             <div class="box-header" style="background-color: #0b3e6f; color: #ffffff; border-top-color:#0b3e6f">
                 <h3 class="box-title"><?= $quiz->name ?></h3>
             </div>
-            <div data-count="<?= $count ?>" data-first_section="<?= $quiz->sections[0]->id ?>" class="box-body"
+            <div data-count="<?= $count ?>" data-first_section="<?= $quiz->sections[$quiz->current_section]->id ?>" class="box-body"
                  id="game-questions"
-                 style="background-image: url(/<?= $quiz->sections[0]->background ?>); background-repeat: round">
+                 style="background-image: url(/<?= $quiz->sections[$quiz->current_section]->background ?>); background-repeat: round">
                 <?php foreach ($quiz->sections as $section) { ?>
                     <div id="<?= $section->id ?>" data-next_section="<?= $quiz->sections[$j + 1]->id ?>"
                          class="game-section">
@@ -45,8 +45,8 @@ $j = 0;
             <div class="modal-body modal-picture"
                  style="height: 750px; background-image: url(/files/backgrounds/1.png); background-repeat: round">
                 <div class="modal-text section-rules" style="margin-top: 15% !important; font-size: small">
-                    <p>Правила тура "<?= $quiz->sections[0]->name ?>"</p>
-                    <p><?= $quiz->sections[0]->rules ?></p>
+                    <p>Правила тура "<?= $quiz->sections[$quiz->current_section]->name ?>"</p>
+                    <p><?= $quiz->sections[$quiz->current_section]->rules ?></p>
                 </div>
             </div>
         </div>
@@ -60,12 +60,12 @@ $j = 0;
             <div class="modal-header" id="section-name" style="background-color: #0b3e6f !important;">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span></button>
-                <h3 class="modal-title" style="background-color: #0b3e6f; font-family: Rostelecom Basis; border-top-color: #0b3e6f" ><?= $quiz->sections[0]->name ?></h3>
+                <h3 class="modal-title" style="background-color: #0b3e6f; font-family: Rostelecom Basis; border-top-color: #0b3e6f" ><?= $quiz->sections[$quiz->current_section]->name ?></h3>
             </div>
             <div class="modal-body modal-picture"
                  style="height: 750px; background-image: url(/files/backgrounds/1.png); background-repeat: round">
                 <div class="modal-text">
-                    <p class="question-number">Вопрос №1</p>
+                    <p class="question-number">Вопрос №<?= $quiz->current_question+1 ?></p>
                 </div>
             </div>
         </div>

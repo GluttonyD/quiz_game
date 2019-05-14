@@ -97,7 +97,14 @@ class GameController extends Controller
         $quiz->current_question=$number;
         $quiz->save();
         return true;
+    }
 
+    public function actionSetSection($number=0,$offset=0){
+        $quiz=Quiz::find()->one();
+        $quiz->current_section=$number;
+        $quiz->offset=$offset;
+        $quiz->save();
+        return true;
     }
 
     public function actionNextQuestion($current_question=null){

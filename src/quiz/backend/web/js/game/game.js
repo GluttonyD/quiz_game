@@ -1,8 +1,9 @@
 var question_count=$('#game-questions').data('count');
-var current_question=0;
+var current_question=Number($('#game').data('current_question'));
 var current_section_count;
 var current_section_id=$('#game-questions').data('first_section');
-var offset=0;
+var current_section_number=Number($('#game').data('current_section'));
+var offset=Number($('#game').data('offset'));;
 var background;
 var dump;
 
@@ -48,9 +49,11 @@ $(document).ready(function () {
            $('#show-section-results').css('display', 'none');
            $('#question-' + current_question + '').css('display', 'none');
            current_question++;
+           current_section_number++;
            $('.question-number').text('Вопрос №'+(current_question+1));
            $('#question-' + current_question + '').css('display', 'block');
-           sendNextQuestion();
+           setSectionNumber(current_section_number,offset);
+           sendNextQuestion(current_question);
            $('#rules-modal').modal('show');
            showRules(id);
 
@@ -208,3 +211,21 @@ function showStart() {
         }
     });
 }
+
+function setSectionNumber(number,offset) {
+
+    $.ajax({
+        url: '/game/set-section', // Url to which the request is send
+        type: "GET",             // Type of request to be send, called as method
+        data: {number:number,offset:offset}, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+        contentType: false,       // The content type used when sending data to the server.
+        cache: false,             // To unable request pages to be cached
+        processData: true,
+        dataType: 'json',// To send DOMDocument or non processed data file it is set to false
+        success: function (data)   // A function to be called if request succeeds
+        {
+            console.log(data);
+        }
+    });
+}
+
