@@ -97,10 +97,14 @@ class GameController extends Controller
     public function actionCleanResult(){
         $question_dump=UserQuestion::find()->all();
         $answer_dump=UserAnswer::find()->all();
+        $result=QuizResult::find()->all();
         foreach ($question_dump as $item){
             $item->delete();
         }
         foreach ($answer_dump as $item){
+            $item->delete();
+        }
+        foreach ($result as $item){
             $item->delete();
         }
         return true;
